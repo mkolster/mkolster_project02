@@ -74,9 +74,9 @@ class Logic(QMainWindow, Ui_PyVote_welcome):
 
                 if len(data) > 0:
 
-                    last_match = self.check_last(name, data)
-                    first_match = self.check_first(name, data)
-                    dob_match = self.check_dob(name, data)
+                    last_match = self.__check_last(name, data)
+                    first_match = self.__check_first(name, data)
+                    dob_match = self.__check_dob(name, data)
 
                     # Entries in the text boxes are compared to existing data in the csv file to ensure that voters
                     # cannot vote more than once. If an entry has the same last name, first name, and date of birth
@@ -147,7 +147,7 @@ class Logic(QMainWindow, Ui_PyVote_welcome):
         self.voter_dob.setDate(QDate(2000, 1, 1))
         QMessageBox.warning(self, "Invalid Input", message)
 
-    def check_last(self, name, data):
+    def __check_last(self, name, data):
         '''
         Checks last name against csv file.
         :param name: list containing last, first, middle, dob
@@ -160,7 +160,7 @@ class Logic(QMainWindow, Ui_PyVote_welcome):
                 return True
         return False
 
-    def check_first(self, name, data):
+    def __check_first(self, name, data):
         '''
         Checks first name against csv file.
         :param name:  list containing last, first, middle, dob
@@ -173,7 +173,7 @@ class Logic(QMainWindow, Ui_PyVote_welcome):
                 return True
         return False
 
-    def check_dob(self, name, data):
+    def __check_dob(self, name, data):
         '''
         Checks date of birth against csv file.
         :param name:  list containing last, first, middle, dob
