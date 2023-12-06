@@ -22,16 +22,16 @@ class Logic(QMainWindow, Ui_PyVote_welcome):
         super().__init__()
         self.setupUi(self)
 
-        self.vote_now.clicked.connect(lambda : self.printer())
+        self.vote_now.clicked.connect(lambda : self.__printer())
         self.exit_welcome.clicked.connect(lambda : self.stop())
 
-        self.____good_input = False
+        self.__good_input = False
 
-    def printer(self):
+    def __printer(self):
 
         '''
         The main function responsible for calling functions to check input values. When all conditions are met,
-        printer opens the next page to display the federal vote menu.
+        __printer opens the next page to display the federal vote menu.
         :return: None
         '''
 
@@ -49,12 +49,12 @@ class Logic(QMainWindow, Ui_PyVote_welcome):
             # Assigns variables to strings from text entry boxes and strips spaces.
             # Date of Birth (dob) is converted into usable string from date box in PyQt.
 
-            if not self.checker(last):
-                self.clear_and_print_message(self.last_name, 'Last name is not alphabetic')
-            if not self.checker(first):
-                self.clear_and_print_message(self.first_name, 'First name is not alphabetic')
-            if not self.checker(middle):
-                self.clear_and_print_message(self.middle_initial, 'Middle initial is not alphabetic')
+            if not self.__checker(last):
+                self.__clear_and_print_message(self.last_name, 'Last name is not alphabetic')
+            if not self.__checker(first):
+                self.__clear_and_print_message(self.first_name, 'First name is not alphabetic')
+            if not self.__checker(middle):
+                self.__clear_and_print_message(self.middle_initial, 'Middle initial is not alphabetic')
             else:
                 self.__good_input = True
 
@@ -88,7 +88,7 @@ class Logic(QMainWindow, Ui_PyVote_welcome):
                     if last_match:
                         if first_match:
                             if dob_match:
-                                self.clear_and_print_warning(self.last_name, self.first_name, self.middle_initial, f'{last}, {first} {middle} has already voted')
+                                self.__clear_and_print_warning(self.last_name, self.first_name, self.middle_initial, f'{last}, {first} {middle} has already voted')
                     else:
                         with open('election_results.csv', 'a', newline='') as results:
                             writer = csv.writer(results)
@@ -104,7 +104,7 @@ class Logic(QMainWindow, Ui_PyVote_welcome):
                 # The voter's last, first, middle initial, and dob are entered into the csv file and the next window is
                 # called.
 
-    def checker(self, name):
+    def __checker(self, name):
 
         '''
         Checks to see if the input name is all alphabetic.
@@ -116,7 +116,7 @@ class Logic(QMainWindow, Ui_PyVote_welcome):
         return name.isalpha()
 
 
-    def clear_and_print_message(self, line_edit, message):
+    def __clear_and_print_message(self, line_edit, message):
 
         '''
         If strings contain non-alphabetic characters, line edits are cleared.
@@ -129,7 +129,7 @@ class Logic(QMainWindow, Ui_PyVote_welcome):
         line_edit.clear()
         QMessageBox.warning(self, "Invalid Input", message)
 
-    def clear_and_print_warning(self, line_edit1, line_edit2, line_edit3, message):
+    def __clear_and_print_warning(self, line_edit1, line_edit2, line_edit3, message):
 
         '''
         If voter has already voted this clears the text_entries, resets the date to default, and shows a warning.
