@@ -9,11 +9,13 @@ class StateLogic(QMainWindow, Ui_State_Votes):
 
         self.next_page.clicked.connect(lambda: self.state_vote())
 
-        # self.alli_vote.clicked.connect(lambda : self.alli())
-        # self.cam_vote.clicked.connect(lambda : self.cam())
-        # self.diego_vote.clicked.connect(lambda : self.diego())
-
     def check_radio(self):
+
+        '''
+        Checks which radio button has been selected.
+        :return: Candidate name in string
+        '''
+
         if self.leo_vote.isChecked():
             return 'Leonard Anderson'
         elif self.sarah_vote.isChecked():
@@ -24,18 +26,23 @@ class StateLogic(QMainWindow, Ui_State_Votes):
             return ''
 
     def state_vote(self):
+
+        '''
+        Opens csv file and appends user's federal vote to existing user data from welcome menu. Moves to next window
+        when all conditions are met.
+        :return: None
+        '''
+
         with open('election_results.csv', 'r', newline='') as results:
             reader = csv.reader(results)
-            data = list(reader)  # Convert the reader object to a list
+            data = list(reader)
 
-        # Check if there is any data in the file
-
-        # Find the last row and append a value to the last position
         last_row_index = len(data) - 1
         last_row = data[last_row_index]
 
-        # Append the new value to the last row
         new_value = self.check_radio()
+
+        # Assigns very last value in data list to be location of federal vote. Checks which radio button was selected.
 
         if len(last_row) < 6:
             last_row.insert(5, new_value)
@@ -44,8 +51,8 @@ class StateLogic(QMainWindow, Ui_State_Votes):
 
         data[-1] = last_row
 
+        # Writes federal vote to csv file and continues to state vote window.
 
-        # Write the modified data back to the CSV file
         with open('election_results.csv', 'w', newline='') as results:
             writer = csv.writer(results)
             writer.writerows(data)
@@ -54,5 +61,12 @@ class StateLogic(QMainWindow, Ui_State_Votes):
 
         self.closer()
 
+
+
     def closer(self):
+        '''
+        Closes the program.
+        :return: None
+        '''
+
         quit()
