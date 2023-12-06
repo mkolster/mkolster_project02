@@ -25,7 +25,7 @@ class Logic(QMainWindow, Ui_PyVote_welcome):
         self.vote_now.clicked.connect(lambda : self.printer())
         self.exit_welcome.clicked.connect(lambda : self.stop())
 
-        self.good_input = False
+        self.____good_input = False
 
     def printer(self):
 
@@ -56,12 +56,12 @@ class Logic(QMainWindow, Ui_PyVote_welcome):
             if not self.checker(middle):
                 self.clear_and_print_message(self.middle_initial, 'Middle initial is not alphabetic')
             else:
-                self.good_input = True
+                self.__good_input = True
 
             # Checks for alphabetic entries and clears text box text if numbers or symbols are entered.
-            # If so, good_input is changed to "True".
+            # If so, __good_input is changed to "True".
 
-            if self.good_input:
+            if self.__good_input:
                 name = [last, first, middle, dob]
 
 
