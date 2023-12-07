@@ -29,19 +29,55 @@ def cell_check(x, y):
         return False
 
 
-def check_patrol(x, y):
-
+def check_carrier(x, y):
     """
-    checks clicked cell against cells in patrol boat
+    checks clicked cell against cells in carrier
     :param x: x coordinate
     :param y: y coordinate
     :return: True if hit, False if not
     """
 
-    for i in range(len(patrol_boat)):
-        if patrol_boat[i] == (x, y):
+    for i in range(len(carrier)):
+        if carrier[i] == (x, y):
             return True
-        elif i < 2:
+        elif i < 5:
+            i += 1
+        else:
+            return False
+
+
+def check_battleship(x, y):
+
+    """
+    checks clicked cell against cells in battleship
+    :param x: x coordinate
+    :param y: y coordinate
+    :return: True if hit, False if not
+    """
+
+    for i in range(len(battleship)):
+        if battleship[i] == (x, y):
+            return True
+        elif i < 4:
+            i += 1
+        else:
+            return False\
+
+
+
+def check_destroyer(x, y):
+
+    """
+    checks clicked cell against cells in destroyer
+    :param x: x coordinate
+    :param y: y coordinate
+    :return: True if hit, False if not
+    """
+
+    for i in range(len(destroyer)):
+        if destroyer[i] == (x, y):
+            return True
+        elif i < 3:
             i += 1
         else:
             return False
@@ -65,54 +101,19 @@ def check_submarine(x, y):
             return False
 
 
-def check_destroyer(x, y):
+def check_patrol(x, y):
 
     """
-    checks clicked cell against cells in destroyer
+    checks clicked cell against cells in patrol boat
     :param x: x coordinate
     :param y: y coordinate
     :return: True if hit, False if not
     """
 
-    for i in range(len(destroyer)):
-        if destroyer[i] == (x, y):
+    for i in range(len(patrol_boat)):
+        if patrol_boat[i] == (x, y):
             return True
-        elif i < 3:
-            i += 1
-        else:
-            return False
-
-
-def check_battleship(x, y):
-
-    """
-    checks clicked cell against cells in battleship
-    :param x: x coordinate
-    :param y: y coordinate
-    :return: True if hit, False if not
-    """
-
-    for i in range(len(battleship)):
-        if battleship[i] == (x, y):
-            return True
-        elif i < 4:
-            i += 1
-        else:
-            return False
-
-
-def check_carrier(x, y):
-    """
-    checks clicked cell against cells in carrier
-    :param x: x coordinate
-    :param y: y coordinate
-    :return: True if hit, False if not
-    """
-
-    for i in range(len(carrier)):
-        if carrier[i] == (x, y):
-            return True
-        elif i < 5:
+        elif i < 2:
             i += 1
         else:
             return False
