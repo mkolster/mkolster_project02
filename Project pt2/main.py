@@ -1,6 +1,11 @@
 import menu_result_display
 
 def main():
+
+    '''
+    Calls first welcome screen and starts program.
+    :return: None
+    '''
     menu_result_display.welcome_screen()
 
 

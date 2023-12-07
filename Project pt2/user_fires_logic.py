@@ -13,10 +13,6 @@ incorrect = []
 check = False
 
 
-def print_cell(x, y):
-    print(x, y)
-
-
 def cell_check(x, y):
     if check_patrol(x, y):
         patrol_correct.append((x, y))

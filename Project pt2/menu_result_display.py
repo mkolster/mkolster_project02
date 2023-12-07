@@ -13,10 +13,16 @@ mixer.music.set_volume(0.2)
 
 
 def welcome_screen():
-    mixer.music.play()
-    color = 'white'
-    position = (0,0)
 
+    '''
+    Controls entire welcome screen and calls associated functions as appropriate. Upon completing requirements main
+    game screen is called. See comments below for specifics.
+    :return: None
+    '''
+
+    mixer.music.play() # starts welcome screen music
+
+    # sets up the input box for the user to input their name on the welcome screen
     input_text = ''
     input_rect = pygame.Rect(300 // 2, 425, 200, 35)
     input_rect.center = (500 // 2, 900//2)
@@ -31,17 +37,14 @@ def welcome_screen():
     image = pygame.image.load('battleship3.jpg')
     image = pygame.transform.scale(image, (500,500))
 
+    # sets the title and text on the welcome screen
+
     font = pygame.font.Font('freesansbold.ttf', 65)
     text = font.render('BATTLESHIP', True, 'white', (55, 55, 55))
     text_rect = text.get_rect()
     text_rect.center = (500 // 2, 100 // 2)
 
-
-
     font2 = pygame.font.Font('freesansbold.ttf', 35)
-    # text2 = font2.render(' player name', True, 'black', 'gray')
-    # text2_rect = text2.get_rect()
-    # text2_rect.center = (500 // 2, 600 // 2)
 
     text3 = font2.render('Press ENTER to begin',True, 'white')
     text3_rect = text3.get_rect()
@@ -54,6 +57,7 @@ def welcome_screen():
 
     quitter = False
     letter_count = 0
+    # Pygame game loop that displays all welcome screen elements
     while not quitter:
         screen.fill('black')
         screen.blit(image, (0,0))
@@ -63,30 +67,32 @@ def welcome_screen():
         screen.blit(text_username, text_username_rect)
 
         for event in pygame.event.get():
-            if event.type == pygame.QUIT:
+            if event.type == pygame.QUIT: # stops game loop and exits program
                 mixer.music.stop()
                 pygame.quit()
                 sys.exit()
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RETURN:
                     mixer.music.stop()
-                    control_fires.gridsquare(input_text)
+                    control_fires.gridsquare(input_text) # opens main game window if enter key is pressed
+
+                # Controls text input in the username box.
+
                 if active:
                     if event.key == pygame.K_BACKSPACE:
                         input_text = input_text[:-1]
                         letter_count -= 1
-                    elif letter_count <= 12 and event.key != pygame.KMOD_SHIFT:
+                    elif letter_count <= 12 and event.key != pygame.KMOD_SHIFT: # limits characters to 12
                         input_text += event.unicode
                         letter_count += 1
 
-
-            elif event.type == pygame.MOUSEBUTTONDOWN:
+            elif event.type == pygame.MOUSEBUTTONDOWN: # changes active status if player clicks inside the text box
                 if input_rect.collidepoint(event.pos):
                     active = True
                 else:
                     active = False
 
-        if active:
+        if active: # changes color if text box is active
             color = (255, 255, 255)
         else:
             color = (200, 200, 200)
@@ -94,7 +100,6 @@ def welcome_screen():
         pygame.draw.rect(screen, color, input_rect)
         text_surface = text_font.render(input_text, True, 'black')
         screen.blit(text_surface, (input_rect.x + 5, input_rect.y + 5))
-        # input_rect.w = max(200, text_surface.get_width() + 20)
 
         pygame.display.flip()
         clock.tick(60)
@@ -103,11 +108,20 @@ def welcome_screen():
 
 
 def ending_screen(value, player_name, outcome):
+
+    '''
+    Takes values from game and outputs them in ending message.
+
+    :param value: list of number of hits on each ship, respectively
+    :param player_name: name from welcome screen
+    :param outcome: win or loss
+    :return: None
+    '''
     mixer.music.play()
-    color = 'white'
-    position = (0, 0)
 
     screen = pygame.display.set_mode((500, 500))
+
+    # displays text and number of hits on each ship
 
     pygame.display.set_caption('Game Over')
 
@@ -146,7 +160,7 @@ def ending_screen(value, player_name, outcome):
 
     quitter = False
 
-    while not quitter:
+    while not quitter: # Pygame game loop displays all the text and elements in the end screen
         screen.fill('black')
         screen.blit(image, (0, 0))
         screen.blit(text, text_rect)
