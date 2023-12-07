@@ -19,7 +19,7 @@ class FederalLogic(QMainWindow, Ui_Voting_menu01):
 
         self.next_page.clicked.connect(lambda : self.federal_vote())
 
-    def check_radio(self):
+    def __check_radio(self):
 
         '''
         Checks which radio button has been selected.
@@ -52,7 +52,7 @@ class FederalLogic(QMainWindow, Ui_Voting_menu01):
 
         # Assigns very last value in data list to be location of federal vote. Checks which radio button was selected.
 
-        new_value = self.check_radio()
+        new_value = self.__check_radio()
 
         if len(last_row) < 5:
             last_row.insert(4, new_value)
@@ -69,11 +69,11 @@ class FederalLogic(QMainWindow, Ui_Voting_menu01):
 
         results.close()
 
-        self.next_window()
+        self.__next_window()
 
         # Writes federal vote to csv file and continues to state vote window.
 
-    def next_window(self):
+    def __next_window(self):
 
         '''
         Calls state vote window.
