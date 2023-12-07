@@ -4,27 +4,26 @@ from logic_state import StateLogic
 import csv
 
 
-
 class FederalLogic(QMainWindow, Ui_Voting_menu01):
 
-    '''
+    """
     Federal Logic runs federal voting menu window and associated buttons and links.
-    '''
+    """
     def __init__(self):
-        '''
+        """
         Initializes class and sends button to appropriate button.
-        '''
+        """
         super().__init__()
         self.setupUi(self)
 
-        self.next_page.clicked.connect(lambda : self.federal_vote())
+        self.next_page.clicked.connect(lambda: self.federal_vote())
 
     def __check_radio(self):
 
-        '''
+        """
         Checks which radio button has been selected.
         :return: Candidate name in string
-        '''
+        """
 
         if self.alli_vote.isChecked():
             return 'Allison Ackers'
@@ -37,11 +36,11 @@ class FederalLogic(QMainWindow, Ui_Voting_menu01):
 
     def federal_vote(self):
 
-        '''
+        """
         Opens csv file and appends user's federal vote to existing user data from welcome menu. Moves to next window
         when all conditions are met.
         :return: None
-        '''
+        """
 
         with open('election_results.csv', 'r', newline='') as results:
             reader = csv.reader(results)
@@ -61,8 +60,6 @@ class FederalLogic(QMainWindow, Ui_Voting_menu01):
 
         data[-1] = last_row
 
-
-
         with open('election_results.csv', 'w', newline='') as results:
             writer = csv.writer(results)
             writer.writerows(data)
@@ -75,10 +72,10 @@ class FederalLogic(QMainWindow, Ui_Voting_menu01):
 
     def __next_window(self):
 
-        '''
+        """
         Calls state vote window.
         :return: None
-        '''
+        """
 
         self.hide()
         self.z = StateLogic()

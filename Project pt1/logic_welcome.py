@@ -1,39 +1,36 @@
 from PyQt6.QtCore import QDate
 from PyQt6.QtWidgets import *
-from gui import *
+from welcome_identification import *
 import csv
 from logic_federal import FederalLogic
 from datetime import datetime
 
 
-
 class Logic(QMainWindow, Ui_PyVote_welcome):
-
-
-    '''
+    """
     Logic class runs welcome window and associated line edits and buttons.
-    '''
+    """
 
     def __init__(self):
-        '''
+        """
         Initializes class variables and sends buttons to appropriate functions.
-        '''
+        """
 
         super().__init__()
         self.setupUi(self)
 
-        self.vote_now.clicked.connect(lambda : self.__printer())
-        self.exit_welcome.clicked.connect(lambda : self.stop())
+        self.vote_now.clicked.connect(lambda: self.__printer())
+        self.exit_welcome.clicked.connect(lambda: self.stop())
 
         self.__good_input = False
 
     def __printer(self):
 
-        '''
+        """
         The main function responsible for calling functions to check input values. When all conditions are met,
         __printer opens the next page to display the federal vote menu.
         :return: None
-        '''
+        """
 
         if self.last_name.text() != '' and self.first_name.text() != '':
 
@@ -64,8 +61,6 @@ class Logic(QMainWindow, Ui_PyVote_welcome):
             if self.__good_input:
                 name = [last, first, middle, dob]
 
-
-
                 with open('election_results.csv', 'r', newline='') as results:
                     reader = csv.reader(results)
                     data = list(reader)
@@ -85,53 +80,51 @@ class Logic(QMainWindow, Ui_PyVote_welcome):
                     # and date of birth in the case of twins, but have different first names.) Only if all three match
                     # are they barred from voting. Assumes voter honesty.
 
-                    if last_match:
-                        if first_match:
-                            if dob_match:
-                                self.__clear_and_print_warning(self.last_name, self.first_name, self.middle_initial, f'{last}, {first} {middle} has already voted')
+                    if last_match and first_match and dob_match:
+                        self.__clear_and_print_warning(self.last_name, self.first_name, self.middle_initial,
+                                                       f'{last}, {first} {middle} has already voted')
                     else:
                         with open('election_results.csv', 'a', newline='') as results:
                             writer = csv.writer(results)
                             writer.writerow(name)
 
                         self.next_window()
+
+                # The voter's last, first, middle initial, and dob are entered into the csv file and the next window is
+                # called.
                 else:
                     with open('election_results.csv', 'a', newline='') as results:
                         writer = csv.writer(results)
                         writer.writerow(name)
                     self.next_window()
 
-                # The voter's last, first, middle initial, and dob are entered into the csv file and the next window is
-                # called.
-
     def __checker(self, name):
 
-        '''
+        """
         Checks to see if the input name is all alphabetic.
 
         :param name: either voter's first or last name depending on which function call
         :return: True or False
-        '''
+        """
 
         return name.isalpha()
 
-
     def __clear_and_print_message(self, line_edit, message):
 
-        '''
+        """
         If strings contain non-alphabetic characters, line edits are cleared.
 
         :param line_edit: the line_edit that contains a number or symbol
         :param message: Message denoting which line edit has the invalid entry
         :return: None
-        '''
+        """
 
         line_edit.clear()
         QMessageBox.warning(self, "Invalid Input", message)
 
     def __clear_and_print_warning(self, line_edit1, line_edit2, line_edit3, message):
 
-        '''
+        """
         If voter has already voted this clears the text_entries, resets the date to default, and shows a warning.
 
         :param line_edit1: last name text entry
@@ -139,7 +132,7 @@ class Logic(QMainWindow, Ui_PyVote_welcome):
         :param line_edit3: middle initial text entry
         :param message: (name) has already voted
         :return: None
-        '''
+        """
 
         line_edit1.clear()
         line_edit2.clear()
@@ -148,12 +141,12 @@ class Logic(QMainWindow, Ui_PyVote_welcome):
         QMessageBox.warning(self, "Invalid Input", message)
 
     def __check_last(self, name, data):
-        '''
+        """
         Checks last name against csv file.
         :param name: list containing last, first, middle, dob
         :param data: csv file contents converted to list
         :return: True or False
-        '''
+        """
 
         for row in data:
             if row[0] == name[0]:
@@ -161,12 +154,12 @@ class Logic(QMainWindow, Ui_PyVote_welcome):
         return False
 
     def __check_first(self, name, data):
-        '''
+        """
         Checks first name against csv file.
         :param name:  list containing last, first, middle, dob
         :param data: csv file contents converted to list
         :return: True or False
-        '''
+        """
 
         for row in data:
             if row[1] == name[1]:
@@ -174,12 +167,12 @@ class Logic(QMainWindow, Ui_PyVote_welcome):
         return False
 
     def __check_dob(self, name, data):
-        '''
+        """
         Checks date of birth against csv file.
         :param name:  list containing last, first, middle, dob
         :param data: csv file contents converted to list
         :return: True or False
-        '''
+        """
 
         entered_dob = name[3]
         for row in data:
@@ -190,27 +183,28 @@ class Logic(QMainWindow, Ui_PyVote_welcome):
         return False
 
     def next_window(self):
-        '''
+        """
         Opens federal voting menu
         :return: None
-        '''
+        """
 
         self.hide()
         self.w = FederalLogic()
         self.w.show()
+
     def clear(self):
-        '''
+        """
         Clear function called when voter has voted or name entry has forbidden characters.
         :return: None
-        '''
+        """
 
         self.last_name.clear()
         self.first_name.clear()
         self.middle_initial.clear()
 
     def stop(self):
-        '''
+        """
         Closes program.
         :return: None
-        '''
+        """
         quit()

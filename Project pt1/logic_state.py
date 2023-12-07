@@ -2,6 +2,7 @@ import csv
 from state_elections import *
 from PyQt6.QtWidgets import *
 
+
 class StateLogic(QMainWindow, Ui_State_Votes):
     def __init__(self):
         super().__init__()
@@ -11,10 +12,10 @@ class StateLogic(QMainWindow, Ui_State_Votes):
 
     def __check_radio(self):
 
-        '''
+        """
         Checks which radio button has been selected.
         :return: Candidate name in string
-        '''
+        """
 
         if self.leo_vote.isChecked():
             return 'Leonard Anderson'
@@ -27,11 +28,11 @@ class StateLogic(QMainWindow, Ui_State_Votes):
 
     def state_vote(self):
 
-        '''
+        """
         Opens csv file and appends user's federal vote to existing user data from welcome menu. Moves to next window
         when all conditions are met.
         :return: None
-        '''
+        """
 
         with open('election_results.csv', 'r', newline='') as results:
             reader = csv.reader(results)
@@ -61,12 +62,10 @@ class StateLogic(QMainWindow, Ui_State_Votes):
 
         self.__closer()
 
-
-
     def __closer(self):
-        '''
+        """
         Closes the program.
         :return: None
-        '''
+        """
 
         quit()
