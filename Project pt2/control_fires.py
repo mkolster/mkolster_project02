@@ -288,7 +288,7 @@ def gridsquare(player_name):
 
                 # all non-clicked cells that aren't hits or misses in bottom half are colored light gray
                 elif not cell.clicked and user_fires_logic.ship_board_check(iy):
-                    color = 'gray'
+                    color = (137, 148, 153)
 
                 pygame.draw.rect(window, color, (ix*30+1.5, iy*30+1.5, 27, 27)) # cells are drawn in
 

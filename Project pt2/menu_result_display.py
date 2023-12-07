@@ -25,7 +25,7 @@ def welcome_screen():
     # sets up the input box for the user to input their name on the welcome screen
     input_text = ''
     input_rect = pygame.Rect(300 // 2, 425, 200, 35)
-    input_rect.center = (500 // 2, 900//2)
+    input_rect.center = (325, 800//2)
     active = False
     text_font = pygame.font.Font(None, 32)
 
@@ -39,21 +39,21 @@ def welcome_screen():
 
     # sets the title and text on the welcome screen
 
-    font = pygame.font.Font('freesansbold.ttf', 65)
-    text = font.render('BATTLESHIP', True, 'white', (55, 55, 55))
+    font = pygame.font.Font('freesansbold.ttf', 81)
+    text = font.render('BATTLESHIP', True, 'gray', (0, 14, 88))
     text_rect = text.get_rect()
-    text_rect.center = (500 // 2, 100 // 2)
+    text_rect.center = (500 // 2, 40)
 
     font2 = pygame.font.Font('freesansbold.ttf', 35)
 
-    text3 = font2.render('Press ENTER to begin',True, 'white')
-    text3_rect = text3.get_rect()
-    text3_rect.center = (500//2, 750//2)
-
-    font3 = pygame.font.Font('freesansbold.ttf', 20)
-    text_username = font3.render('Player Name:', True, 'black','gray')
+    font3 = pygame.font.Font('freesansbold.ttf', 25)
+    text_username = font3.render('Player Name:', True, 'white')
     text_username_rect = text_username.get_rect()
-    text_username_rect.center = (500 // 2, 825//2)
+    text_username_rect.center = (125, 800//2)
+
+    text3 = font2.render('Press ENTER to begin', True, 'white')
+    text3_rect = text3.get_rect()
+    text3_rect.center = (500 // 2, 900 // 2)
 
     quitter = False
     letter_count = 0
@@ -93,7 +93,7 @@ def welcome_screen():
                     active = False
 
         if active: # changes color if text box is active
-            color = (255, 255, 255)
+            color = 'white'
         else:
             color = (200, 200, 200)
 
