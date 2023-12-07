@@ -183,7 +183,7 @@ class Logic(QMainWindow, Ui_PyVote_welcome):
 
         return False
 
-    def next_window(self):
+    def next_window(self) -> None:
         """
         Opens federal voting menu
         :return: None
@@ -193,7 +193,7 @@ class Logic(QMainWindow, Ui_PyVote_welcome):
         self.w = FederalLogic()
         self.w.show()
 
-    def clear(self):
+    def clear(self) -> None:
         """
         Clear function called when voter has voted or name entry has forbidden characters.
         :return: None
@@ -203,7 +203,7 @@ class Logic(QMainWindow, Ui_PyVote_welcome):
         self.first_name.clear()
         self.middle_initial.clear()
 
-    def stop(self):
+    def stop(self) -> None:
         """
         Closes program.
         :return: None

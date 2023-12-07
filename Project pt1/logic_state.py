@@ -4,13 +4,13 @@ from PyQt6.QtWidgets import *
 
 
 class StateLogic(QMainWindow, Ui_State_Votes):
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
         self.setupUi(self)
 
         self.next_page.clicked.connect(lambda: self.state_vote())
 
-    def __check_radio(self):
+    def __check_radio(self) -> str:
 
         """
         Checks which radio button has been selected.
@@ -26,7 +26,7 @@ class StateLogic(QMainWindow, Ui_State_Votes):
         else:
             return ''
 
-    def state_vote(self):
+    def state_vote(self) -> None:
 
         """
         Opens csv file and appends user's federal vote to existing user data from welcome menu. Moves to next window
@@ -62,7 +62,7 @@ class StateLogic(QMainWindow, Ui_State_Votes):
 
         self.__closer()
 
-    def __closer(self):
+    def __closer(self) -> None:
         """
         Closes the program.
         :return: None

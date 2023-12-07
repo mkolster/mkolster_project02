@@ -9,7 +9,7 @@ class FederalLogic(QMainWindow, Ui_Voting_menu01):
     """
     Federal Logic runs federal voting menu window and associated buttons and links.
     """
-    def __init__(self):
+    def __init__(self) -> None:
         """
         Initializes class and sends button to appropriate button.
         """
@@ -18,7 +18,7 @@ class FederalLogic(QMainWindow, Ui_Voting_menu01):
 
         self.next_page.clicked.connect(lambda: self.federal_vote())
 
-    def __check_radio(self):
+    def __check_radio(self) -> str:
 
         """
         Checks which radio button has been selected.
@@ -34,7 +34,7 @@ class FederalLogic(QMainWindow, Ui_Voting_menu01):
         else:
             return ''
 
-    def federal_vote(self):
+    def federal_vote(self) -> None:
 
         """
         Opens csv file and appends user's federal vote to existing user data from welcome menu. Moves to next window
@@ -70,7 +70,7 @@ class FederalLogic(QMainWindow, Ui_Voting_menu01):
 
         # Writes federal vote to csv file and continues to state vote window.
 
-    def __next_window(self):
+    def __next_window(self) -> None:
 
         """
         Calls state vote window.
