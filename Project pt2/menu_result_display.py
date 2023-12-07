@@ -14,11 +14,11 @@ mixer.music.set_volume(0.2)
 
 def welcome_screen():
 
-    '''
+    """
     Controls entire welcome screen and calls associated functions as appropriate. Upon completing requirements main
     game screen is called. See comments below for specifics.
     :return: None
-    '''
+    """
 
     mixer.music.play() # starts welcome screen music
 
@@ -109,14 +109,14 @@ def welcome_screen():
 
 def ending_screen(value, player_name, outcome):
 
-    '''
+    """
     Takes values from game and outputs them in ending message.
 
     :param value: list of number of hits on each ship, respectively
     :param player_name: name from welcome screen
     :param outcome: win or loss
     :return: None
-    '''
+    """
     mixer.music.play()
 
     screen = pygame.display.set_mode((500, 500))

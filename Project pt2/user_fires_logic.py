@@ -1,40 +1,37 @@
-import control_fires
 import random
 
-import user_ship_logic
-
-patrol_correct = []
-sub_correct = []
-carrier_correct = []
-destroyer_correct = []
-battleship_correct = []
-incorrect = []
+# patrol_correct = []
+# sub_correct = []
+# carrier_correct = []
+# destroyer_correct = []
+# battleship_correct = []
+# incorrect = []
 
 check = False
 
 
 def cell_check(x, y):
     if check_patrol(x, y):
-        patrol_correct.append((x, y))
+        # patrol_correct.append((x, y))
         return True
 
     elif check_submarine(x, y):
-        sub_correct.append((x, y))
+        # sub_correct.append((x, y))
         return True
 
     elif check_battleship(x, y):
-        battleship_correct.append((x,y))
+        # battleship_correct.append((x,y))
         return True
 
     elif check_carrier(x, y):
-        carrier_correct.append((x, y))
+        # carrier_correct.append((x, y))
         return True
 
     elif check_destroyer(x, y):
-        destroyer_correct.append((x, y))
+        # destroyer_correct.append((x, y))
         return True
     else:
-        incorrect.append((x, y))
+        # incorrect.append((x, y))
         return False
 
 
