@@ -1,4 +1,4 @@
-import place_ships
+
 
 ships_list = []
 

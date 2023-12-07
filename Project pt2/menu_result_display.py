@@ -5,8 +5,6 @@ import user_fires_logic
 import sys
 from pygame import mixer
 
-import place_ships
-
 pygame.init()
 mixer.init()
 clock = pygame.time.Clock()
