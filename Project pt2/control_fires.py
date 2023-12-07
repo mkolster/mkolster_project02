@@ -266,13 +266,13 @@ def gridsquare(player_name):
 
                     # checks cell_check function to check for hits on ships and makes sure that the click was in the
                     # top half of the board to paint the cells the appropriate color
-                    if cell.clicked and user_fires_logic.cell_check(ix, iy) and not user_fires_logic.ship_board_check(ix, iy):
+                    if cell.clicked and user_fires_logic.cell_check(ix, iy) and not user_fires_logic.ship_board_check(iy):
                         clicker_check.append((ix, iy)) # appends cell to clicker_check list so cannot be clicked again
                         color = 'red' # colors hits red
-                    elif cell.clicked and not user_fires_logic.cell_check(ix, iy) and not user_fires_logic.ship_board_check(ix, iy):
+                    elif cell.clicked and not user_fires_logic.cell_check(ix, iy) and not user_fires_logic.ship_board_check(iy):
                         clicker_check.append((ix, iy)) # appends cell to clicker_check list so cannot be clicked again
                         color = 'white' # colors misses white
-                if not cell.clicked and not user_fires_logic.ship_board_check(ix, iy):
+                if not cell.clicked and not user_fires_logic.ship_board_check(iy):
                     color = (0, 71, 171) # colors all non-clicked cells in top half blue
 
                 if (ix, iy) in computer_hit: # if cell is in computer_hit list cells are colored red
@@ -282,12 +282,12 @@ def gridsquare(player_name):
 
                 # sets color of initial ships placed by the user in the bottom half of the board to dark gray
                 # and appends all clicked cells to the user_ships list
-                elif cell.clicked and user_fires_logic.ship_board_check(ix, iy):
+                elif cell.clicked and user_fires_logic.ship_board_check(iy):
                     color = (50, 50, 50)
                     user_ships.append((ix, iy))
 
                 # all non-clicked cells that aren't hits or misses in bottom half are colored light gray
-                elif not cell.clicked and user_fires_logic.ship_board_check(ix, iy):
+                elif not cell.clicked and user_fires_logic.ship_board_check(iy):
                     color = 'gray'
 
                 pygame.draw.rect(window, color, (ix*30+1.5, iy*30+1.5, 27, 27)) # cells are drawn in

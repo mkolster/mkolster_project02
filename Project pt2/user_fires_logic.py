@@ -464,29 +464,14 @@ def place_patrol(ships_list):
     return ships_list
 
 
-# clicked = [] # holds coordinates of all cells clicked
-#
-#
-# def clicked_cell(x, y):
-#
-#     """
-#     appends coordinates to
-#     :param x:
-#     :param y:
-#     :return:
-#     """
-#
-#     for i in range(len(clicked)):
-#         if i == (x, y):
-#             return True
-#         elif i < len(clicked):
-#             i += 1
-#         else:
-#             clicked.append((x, y))
-#             return False
+def ship_board_check(y):
 
+    """
+    function checks if y coordinate of clicked cell is in the bottom half of the board
+    :param y: y coordinate
+    :return: True if in bottom, False if not
+    """
 
-def ship_board_check(x, y):
     if 10 <= y <= 19:
         return True
     else:
