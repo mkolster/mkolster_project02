@@ -9,7 +9,7 @@ class StateLogic(QMainWindow, Ui_State_Votes):
 
         self.next_page.clicked.connect(lambda: self.state_vote())
 
-    def check_radio(self):
+    def __check_radio(self):
 
         '''
         Checks which radio button has been selected.
@@ -40,7 +40,7 @@ class StateLogic(QMainWindow, Ui_State_Votes):
         last_row_index = len(data) - 1
         last_row = data[last_row_index]
 
-        new_value = self.check_radio()
+        new_value = self.__check_radio()
 
         # Assigns very last value in data list to be location of federal vote. Checks which radio button was selected.
 
@@ -59,11 +59,11 @@ class StateLogic(QMainWindow, Ui_State_Votes):
 
         results.close()
 
-        self.closer()
+        self.__closer()
 
 
 
-    def closer(self):
+    def __closer(self):
         '''
         Closes the program.
         :return: None
