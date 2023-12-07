@@ -111,10 +111,13 @@ def gridsquare(player_name):
                         mouse_click += 1
                         row = event.pos[1] // 30
                         col = event.pos[0] // 30
-                        if mouse_click <= 5:
+                        if mouse_click <= 5 and not player_board[row][col].clicked:
                             player_board[row][col].clicked = True
-                        else:
-                            player_board[row][col].clicked = False # sets cell.clicked to false if over 5 clicks
+
+                        # disallows player from clicking directly on other ships
+                        elif mouse_click <= 5 and player_board[row][col].clicked:
+                            mouse_click -= 1
+                            break
 
                         # first click sets up user's aircraft carrier (5 cells long)
                         if mouse_click == 1:
@@ -291,7 +294,6 @@ def gridsquare(player_name):
                     color = (137, 148, 153)
 
                 pygame.draw.rect(window, color, (ix*30+1.5, iy*30+1.5, 27, 27)) # cells are drawn in
-
         pygame.display.flip()
 
     pygame.quit()
