@@ -181,4 +181,3 @@ def ending_screen(value, player_name, outcome):
                 quitter = True
 
         pygame.display.update()
-

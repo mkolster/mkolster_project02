@@ -383,4 +383,3 @@ def comp_hit_check(x, y, user_ships):
         return True
     else:
         return False
-
