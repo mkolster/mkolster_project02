@@ -24,7 +24,7 @@ class Logic(QMainWindow, Ui_PyVote_welcome):
 
         self.__good_input = False
 
-    def __printer(self):
+    def __printer(self) -> None:
 
         """
         The main function responsible for calling functions to check input values. When all conditions are met,
@@ -98,7 +98,7 @@ class Logic(QMainWindow, Ui_PyVote_welcome):
                         writer.writerow(name)
                     self.next_window()
 
-    def __checker(self, name):
+    def __checker(self, name: str) -> bool:
 
         """
         Checks to see if the input name is all alphabetic.
@@ -109,7 +109,7 @@ class Logic(QMainWindow, Ui_PyVote_welcome):
 
         return name.isalpha()
 
-    def __clear_and_print_message(self, line_edit, message):
+    def __clear_and_print_message(self, line_edit: str, message: str) -> None:
 
         """
         If strings contain non-alphabetic characters, line edits are cleared.
@@ -122,7 +122,8 @@ class Logic(QMainWindow, Ui_PyVote_welcome):
         line_edit.clear()
         QMessageBox.warning(self, "Invalid Input", message)
 
-    def __clear_and_print_warning(self, line_edit1, line_edit2, line_edit3, message):
+    def __clear_and_print_warning(self, line_edit1: QLineEdit,
+                                  line_edit2: QLineEdit, line_edit3: QLineEdit, message: str) -> None:
 
         """
         If voter has already voted this clears the text_entries, resets the date to default, and shows a warning.
@@ -140,7 +141,7 @@ class Logic(QMainWindow, Ui_PyVote_welcome):
         self.voter_dob.setDate(QDate(2000, 1, 1))
         QMessageBox.warning(self, "Invalid Input", message)
 
-    def __check_last(self, name, data):
+    def __check_last(self, name: list, data: list) -> bool:
         """
         Checks last name against csv file.
         :param name: list containing last, first, middle, dob
@@ -153,7 +154,7 @@ class Logic(QMainWindow, Ui_PyVote_welcome):
                 return True
         return False
 
-    def __check_first(self, name, data):
+    def __check_first(self, name: list, data: list) -> bool:
         """
         Checks first name against csv file.
         :param name:  list containing last, first, middle, dob
@@ -166,7 +167,7 @@ class Logic(QMainWindow, Ui_PyVote_welcome):
                 return True
         return False
 
-    def __check_dob(self, name, data):
+    def __check_dob(self, name: list, data: list) -> bool:
         """
         Checks date of birth against csv file.
         :param name:  list containing last, first, middle, dob
