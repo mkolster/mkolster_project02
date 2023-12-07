@@ -464,26 +464,26 @@ def place_patrol(ships_list):
     return ships_list
 
 
-clicked = [] # holds coordinates of all cells clicked
-
-
-def clicked_cell(x, y):
-
-    """
-    appends coordinates to
-    :param x:
-    :param y:
-    :return:
-    """
-
-    for i in range(len(clicked)):
-        if i == (x, y):
-            return True
-        elif i < len(clicked):
-            i += 1
-        else:
-            clicked.append((x, y))
-            return False
+# clicked = [] # holds coordinates of all cells clicked
+#
+#
+# def clicked_cell(x, y):
+#
+#     """
+#     appends coordinates to
+#     :param x:
+#     :param y:
+#     :return:
+#     """
+#
+#     for i in range(len(clicked)):
+#         if i == (x, y):
+#             return True
+#         elif i < len(clicked):
+#             i += 1
+#         else:
+#             clicked.append((x, y))
+#             return False
 
 
 def ship_board_check(x, y):
