@@ -3,7 +3,7 @@ import random
 check = False
 
 
-def cell_check(x, y):
+def cell_check(x: int, y: int) -> bool:
 
     """
     cell_check calls individual functions that check for hits on specific ships
@@ -29,7 +29,7 @@ def cell_check(x, y):
         return False
 
 
-def check_carrier(x, y):
+def check_carrier(x: int, y: int) -> bool:
     """
     checks clicked cell against cells in carrier
     :param x: x coordinate
@@ -46,7 +46,7 @@ def check_carrier(x, y):
             return False
 
 
-def check_battleship(x, y):
+def check_battleship(x: int, y: int) -> bool:
 
     """
     checks clicked cell against cells in battleship
@@ -61,11 +61,10 @@ def check_battleship(x, y):
         elif i < 4:
             i += 1
         else:
-            return False\
+            return False
 
 
-
-def check_destroyer(x, y):
+def check_destroyer(x: int, y: int) -> bool:
 
     """
     checks clicked cell against cells in destroyer
@@ -83,7 +82,7 @@ def check_destroyer(x, y):
             return False
 
 
-def check_submarine(x, y):
+def check_submarine(x: int, y: int) -> bool:
 
     """
     checks clicked cell against cells in submarine
@@ -101,7 +100,7 @@ def check_submarine(x, y):
             return False
 
 
-def check_patrol(x, y):
+def check_patrol(x: int, y: int) -> bool:
 
     """
     checks clicked cell against cells in patrol boat
@@ -119,7 +118,7 @@ def check_patrol(x, y):
             return False
 
 
-def place_carrier(ships_list):
+def place_carrier(ships_list: list) -> list:
 
     """
     function randomly selects a point, then checks which direction to point the ship, and places the carrier
@@ -191,7 +190,7 @@ def place_carrier(ships_list):
     return ships_list
 
 
-def place_battleship(ships_list):
+def place_battleship(ships_list: list) -> list:
 
     """
     function randomly selects a point, then checks which direction to point the ship, and places the battleship
@@ -263,7 +262,7 @@ def place_battleship(ships_list):
     return ships_list
 
 
-def place_destroyer(ships_list):
+def place_destroyer(ships_list: list) -> list:
 
     """
     function randomly selects a point, then checks which direction to point the ship, and places the destroyer
@@ -331,7 +330,7 @@ def place_destroyer(ships_list):
     return ships_list
 
 
-def place_submarine(ships_list):
+def place_submarine(ships_list: list) -> list:
 
     """
     function randomly selects a point, then checks which direction to point the ship, and places the submarine
@@ -399,7 +398,7 @@ def place_submarine(ships_list):
     return ships_list
 
 
-def place_patrol(ships_list):
+def place_patrol(ships_list: list) -> list:
 
     """
     function randomly selects a point, then checks which direction to point the ship, and places the patrol boat
@@ -465,7 +464,7 @@ def place_patrol(ships_list):
     return ships_list
 
 
-def ship_board_check(y):
+def ship_board_check(y: int) -> bool:
 
     """
     function checks if y coordinate of clicked cell is in the bottom half of the board
@@ -479,7 +478,7 @@ def ship_board_check(y):
         return False
 
 
-def computer_shot(hit_list, miss_list):
+def computer_shot(hit_list: list, miss_list: list) -> tuple:
 
     """
     function chooses two random integers in range of bottom half of board and sends them as the computer's shot

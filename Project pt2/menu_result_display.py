@@ -12,7 +12,7 @@ mixer.music.load('epic-action-113888.mp3')
 mixer.music.set_volume(0.2)
 
 
-def welcome_screen():
+def welcome_screen() -> None:
 
     """
     Controls entire welcome screen and calls associated functions as appropriate. Upon completing requirements main
@@ -107,7 +107,7 @@ def welcome_screen():
         pygame.display.update()
 
 
-def ending_screen(value, player_name, outcome):
+def ending_screen(value: list, player_name: str, outcome: str) -> None:
 
     """
     Takes values from game and outputs them in ending message.

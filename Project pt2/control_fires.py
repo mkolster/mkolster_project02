@@ -12,7 +12,7 @@ class Cell1:
         self.clicked = False
 
 
-def gridsquare(player_name):
+def gridsquare(player_name: str) -> callable:
 
     """
     Runs the main game window and calls outside functions from user_fires and user_ship_logic.
@@ -300,8 +300,7 @@ def gridsquare(player_name):
     exit()
 
 
-
-def count_ship_hits(player_board):
+def count_ship_hits(player_board: list):
 
     """
     count_ship_hits function takes a total of all hits and specifies which hits were on which ships.
@@ -372,7 +371,7 @@ def count_ship_hits(player_board):
     return patrol_kill, sub_kill, destroyer_kill, battleship_kill, carrier_kill, boat_kills
 
 
-def comp_hit_check(x, y, user_ships):
+def comp_hit_check(x: int, y: int, user_ships: list):
 
     """
     function checks to see if the cell guessed by the computer hit the user's ships.
