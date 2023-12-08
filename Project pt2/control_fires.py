@@ -99,10 +99,10 @@ def gridsquare(player_name: str) -> callable:
                             y = comp_shot[1]
                             if (x, y) in user_ships: # computer shot is checked for hit or miss
                                 computer_hit.append((x, y)) # cell is added to list of hits
-                                print(computer_hit)
+
                             else:
                                 computer_miss.append((x, y)) # cell is added to list of misses
-                                print(computer_miss)
+
 
                     # checks for mouse clicks in the bottom half of the board
                     # limits clicks to 5 so users can't change ship positions or click in bottom half after setting up
